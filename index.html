@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP Sistema</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="containerHead">
+            <h2>Sistema de Controle de Funcionarios</h2>
+            <button id="btnIncluir" class="btn">Incluir</button>
+        </div>
+        <div id="containerFiltrar">
+            <h4>Procurar</h4>
+            <input type="text" id="inpFiltrarNome">
+            <button id="btnFiltrar" class="btn">Filtrar</button>
+        </div>
+        <footer id="msgFooter"><footer>
+        <div id="containerTabela">
+            <table id="tbProdutos">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Departamento</th>
+                        <th>Função</th>
+                        <th>Salário</th>
+                        <th>Controle</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyList"></tbody>
+            </table>
+        </div>
+        <dialog id="modalProdutos">
+            <h3>Controle de dados</h3>
+            <div id="containerModal">
+                <div id="containerLabel">
+                    <p>Id: </p>
+                    <p>Nome:</p>
+                    <p>Departamento:</p>  
+                    <p>Função:</p>
+                    <p>Salário:</p>
+                </div>
+                <div id="containerInput">
+                    <input id="inputId" type="text">
+                    <input id="inputNome" type="text">
+                    <input id="inputDep" type="text">
+                    <input id="inputFunc" type="text">
+                    <input id="inputSal" type="text">
+                </div>
+            </div>
+            <button id="btnIncluirModal">Incluir</button>
+            <button id="btnAlterarModal">Alterar</button>
+            <button id="btnExcluirModal">Excluir</button>
+            <button id="btnFecharModal">Fechar</button>
+        </dialog>
+        <dialog id="modalExcluir">
+            <h3>Atenção!</h3>
+            <div id="containerExc">
+                <div id="containerLabelExcluir">
+                    <p>Tem certeza que vai excluir o funcionário?</p>
+                </div>
+            </div>
+            <button id="exclusao">Sim</button>
+            <button id="naoExclusao">Não</button>
+        </dialog>
+    </div>
+
+    <script type="module" src="./src/script.js"></script>
+</body>
+</html>

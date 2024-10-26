@@ -1,0 +1,146 @@
+html , body {
+    /* Reset do css */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #9a88d5;
+}
+
+body {
+  font-family: 'Arial', 'Helvetica', sans-serif; /* Definindo uma fonte sans-serif */
+  font-size: 16px; /* Tamanho base da fonte */
+  color: #333; /* Cor da fonte */
+}
+
+/* Estilo para títulos */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Verdana', sans-serif; /* Outra opção de fonte sans-serif */
+  font-weight: bold; /* Deixando os títulos em negrito */
+  color: #2c3e50; 
+  margin-bottom: 20px; /* Espaçamento após os títulos */
+}
+
+/* Estilo para parágrafos */
+p {
+  font-family: 'Helvetica', 'Arial', sans-serif; /* Fontes alternativas, caindo em sans-serif */
+  font-size: 18.1px;
+  margin-bottom: 15px;
+}
+
+.btn {
+    height: 25px;
+    width: 70px;
+    margin-left: 5px;
+    color: #fff;
+    border-radius: 4px;
+    background: rgb(47, 58, 201);
+    background: linear-gradient(0deg, rgb(65, 74, 199) 0%, rgba(12,25,180,1) 100%);
+    border: none;
+    }
+    .btn:hover {
+        background: rgb(0,3,255);
+    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+    
+}
+
+
+#tbProdutos {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tbProdutos td, #tbProdutos th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tbProdutos tr:nth-child(even){background-color: #f2f2f2;}
+
+#tbProdutos tr:hover {background-color: #dddddd98;}
+
+#tbProdutos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #5006a0;
+  color: white;
+}
+
+#container{
+  text-align: center;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+#containerHead{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container h2{
+  color: #fff;
+}
+
+#containerFiltrar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#containerFiltrar input{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 23px;
+  width: 300px;
+  border: none;
+  border-radius: 3px;
+}
+
+#containerFiltrar h4{
+  color:#f2f2f2;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 18.1px;
+  margin-bottom: 15px;
+}
+
+.icons {
+  height: 16px;
+  width: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+dialog::backdrop{
+  background-color: black;
+}
+
+
+#modalProdutos{
+  height: 400px;
+  width: 530px;
+  border: none;
+  border-radius: .6rem;
+  box-shadow: 0 0 1em rgb(0 0 0 / .3);
+}
+
+#containerModal{
+  display: flex;  
+}
+
+
+#containerInput{
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+
+}
+
+#containerInput input{
+  margin: 4px;
+  margin-bottom: 14px;
+  width: 350px;
+}
+
