@@ -6,21 +6,24 @@ import { atualizarTabela, consultaAPI, justLetters } from './funcionarios/funcio
 // Referências do DOM HTML
 const btnIncluir = document.getElementById('btnIncluir');
 const modalProdutos = document.getElementById('modalProdutos');
-const modalExcluir = document.getElementById('modalExcluir');
 const btnFecharModal = document.getElementById('btnFecharModal');
 const btnFiltrar = document.getElementById('btnFiltrar');
 const inpFiltrarNome = document.getElementById('inpFiltrarNome');
-const btnIncluirModal = document.getElementById('btnIncluirModal')
+const btnIncluirModal = document.getElementById('btnIncluirModal');
+const btnAlterarModal = document.getElementById('btnAlterarModal')
 const inputId = document.getElementById('inputId');
 const inputNome = document.getElementById('inputNome');
 const inputDep = document.getElementById('inputDep');
 const inputFunc = document.getElementById('inputFunc');
 const inputSal = document.getElementById('inputSal');
+const tbodyList = document.getElementById('tbodyList');
+const modalExcluir = document.getElementById('modalExcluir');
+
 // Lógica
-consultaAPI();
+let response = await consultaAPI();
 
 btnIncluir.onclick = ()=>{
-    modalProdutos.show();
+    modalProdutos.showModal();
 };
 
 btnFecharModal.onclick = ()=>{
@@ -28,7 +31,7 @@ btnFecharModal.onclick = ()=>{
 };
 
 btnFiltrar.onclick = ()=>{
-    const filtrados = funcionarios.banco.filter((v)=>{
+    const filtrados = response.filter((v)=>{
         if(justLetters(v.nome).includes(justLetters(inpFiltrarNome.value)) ||
            v.id == inpFiltrarNome.value ||
            justLetters(v.departamento).includes(justLetters(inpFiltrarNome.value)) ||
@@ -65,3 +68,19 @@ btnIncluirModal.onclick = ()=>{
 
     modalProdutos.close();
 }
+
+tbodyList.addEventListener('click', (event)=>{
+    modalExcluir.showModal()
+    let target = event.target
+    
+    document.getElementById('exclusao').addEventListener('click', ()=>{
+        modalExcluir.close()
+        modalProdutos.showModal()
+        btnIncluirModal.desabled
+        btnAlterarModal.desabled
+    })
+
+    document.getElementById('naoExclusao').addEventListener('click', ()=>{
+        modalExcluir.close()
+    })
+})

@@ -28,7 +28,7 @@ export function atualizarTabela(dados){
                         '<td>' + dados[i].funcao + '</td>' +
                         '<td>' + dados[i].salario + '</td>' +
                         '<td>' +
-                            '<img id=btnTrash src="assets/trash.png" class="icons">' +
+                            '<img src="assets/trash.png" class="icons">' +
                             '<img src="assets/edit2.png" class="icons">' +
                         '</td>' +
                   '</tr>'
