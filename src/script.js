@@ -103,11 +103,11 @@ tbodyList.addEventListener('click', (event)=>{
             modalProdutos.showModal()
             setButtons(btnLimpar)
             
-            inputId.value = row.cells[0].textContent
-            inputNome.value = row.cells[1].textContent
-            inputDep.value = row.cells[2].textContent
-            inputFunc.value = row.cells[3].textContent
-            inputSal.value = row.cells[4].textContent
+            inputId.value = dados.id
+            inputNome.value = dados.nome
+            inputDep.value = dados.departamento
+            inputFunc.value = dados.funcao
+            inputSal.value = dados.salario
             
             inputId.disabled = true
             inputNome.disabled = true
@@ -141,11 +141,11 @@ tbodyList.addEventListener('click', (event)=>{
 
         const row = target.closest('tr')
 
-            inputId.value = row.cells[0].textContent
-            inputNome.value = row.cells[1].textContent
-            inputDep.value = row.cells[2].textContent
-            inputFunc.value = row.cells[3].textContent
-            inputSal.value = row.cells[4].textContent
+            inputId.value = dados.id
+            inputNome.value = dados.nome
+            inputDep.value = dados.departamento
+            inputFunc.value = dados.funcao
+            inputSal.value = dados.salario
             
             btnIncluirModal.disabled = true
             btnExcluirModal.disabled = true

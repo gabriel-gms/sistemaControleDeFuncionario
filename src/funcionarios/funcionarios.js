@@ -56,6 +56,3 @@ export function setButtons(btns){
         v.disabled = false
     } )
 }
-
-
-
