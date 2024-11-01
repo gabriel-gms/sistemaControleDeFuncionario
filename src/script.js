@@ -1,6 +1,7 @@
 // Importações
-import funcionarios from '../databases/banco.js';
+import  funcionarios from '../databases/banco.js';
 import { atualizarTabela, consultaAPI, justLetters } from './funcionarios/funcionarios.js';
+import { setInputs, setButtons } from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
@@ -19,22 +20,21 @@ const inputFunc = document.getElementById('inputFunc');
 const inputSal = document.getElementById('inputSal');
 const tbodyList = document.getElementById('tbodyList');
 const modalExcluir = document.getElementById('modalExcluir');
+const inputLimpar = document.querySelectorAll('#containerInput input')
+const btnLimpar = document.querySelectorAll('#modalProdutos button')
 
 // Lógica
 let response = await consultaAPI();
+console.log(response[0]);
+
 
 btnIncluir.onclick = ()=>{
     modalProdutos.showModal();
+    setInputs(inputLimpar)
+    setButtons(btnLimpar)
 
-    inputId.disabled = false
-    inputNome.disabled = false
-    inputDep.disabled = false
-    inputFunc.disabled = false
-    inputSal.disabled = false
-    btnIncluirModal.disabled = false
     btnAlterarModal.disabled = true
     btnExcluirModal.disabled = true
-    btnFecharModal.disabled = false
 };
 
 btnFecharModal.onclick = ()=>{
@@ -61,7 +61,7 @@ btnFiltrar.onclick = ()=>{
 };
 
 btnIncluirModal.onclick = ()=>{
-    funcionarios.banco.push({
+    response.push({
         id: inputId.value, 
         nome: inputNome.value, 
         departamento: inputDep.value, 
@@ -69,7 +69,7 @@ btnIncluirModal.onclick = ()=>{
         salario: inputSal.value
     })
     
-    atualizarTabela(funcionarios.banco)
+    atualizarTabela(response)
 
     inputId.value = ''
     inputNome.value = ''
@@ -82,7 +82,18 @@ btnIncluirModal.onclick = ()=>{
 
 tbodyList.addEventListener('click', (event)=>{
     let target = event.target
-    console.log(target);
+    const row = target.closest('tr')
+
+    const dados = {
+        id: parseInt(row.cells[0].innerHTML),
+        nome: row.cells[1].textContent, 
+        departamento: row.cells[2].textContent,
+        funcao: row.cells[3].textContent,
+        salario: parseInt(row.cells[4].innerHTML) 
+    }
+
+    console.log(dados);
+    
     
     if(target.id === 'btnTrash'){
         modalExcluir.showModal()
@@ -90,9 +101,8 @@ tbodyList.addEventListener('click', (event)=>{
         document.getElementById('exclusao').addEventListener('click', ()=>{
             modalExcluir.close()
             modalProdutos.showModal()
+            setButtons(btnLimpar)
             
-            const row = target.closest('tr')
-
             inputId.value = row.cells[0].textContent
             inputNome.value = row.cells[1].textContent
             inputDep.value = row.cells[2].textContent
@@ -106,11 +116,16 @@ tbodyList.addEventListener('click', (event)=>{
             inputSal.disabled = true
             btnIncluirModal.disabled = true
             btnAlterarModal.disabled = true
-            btnExcluirModal.disabled = false
-            btnFecharModal.disabled = false
 
             document.querySelector('#btnExcluirModal').onclick = ()=>{
-                response.splice()
+                
+                for (let i = 0; i < response.length; i++) {
+                    if(response[i].nome == dados.nome && response[i].id == dados.id){
+                        response.splice(i, 1) 
+                        atualizarTabela(response)
+                    }
+                }
+                modalProdutos.close()
             }
         })
 
@@ -121,6 +136,8 @@ tbodyList.addEventListener('click', (event)=>{
 
     if(target.id === 'btnEdit'){
         modalProdutos.showModal()
+        setInputs(inputLimpar)
+        setButtons(btnLimpar)
 
         const row = target.closest('tr')
 
@@ -130,14 +147,7 @@ tbodyList.addEventListener('click', (event)=>{
             inputFunc.value = row.cells[3].textContent
             inputSal.value = row.cells[4].textContent
             
-            inputId.disabled = false
-            inputNome.disabled = false
-            inputDep.disabled = false
-            inputFunc.disabled = false
-            inputSal.disabled = false
             btnIncluirModal.disabled = true
-            btnAlterarModal.disabled = false
             btnExcluirModal.disabled = true
-            btnFecharModal.disabled = false
     }
 })

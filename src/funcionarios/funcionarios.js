@@ -18,7 +18,6 @@ export function atualizarTabela(dados){
         alert('Não encontrado')
     } 
     else {
-    console.log(dados);
     let rows='';
     for (let i=0; i < dados.length; i++){
         let tr = '<tr>' +
@@ -42,6 +41,20 @@ export function atualizarTabela(dados){
 export function justLetters(text){
     let textMin = text.toLowerCase()
     return textMin.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+}
+
+export function setInputs(values){
+    values.forEach( v => {
+        v.value = ''
+        v.disabled = false
+    } )
+}
+
+export function setButtons(btns){
+    btns.forEach( v => {
+        console.log(v)
+        v.disabled = false
+    } )
 }
 
 
