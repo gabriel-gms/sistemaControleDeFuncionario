@@ -11,6 +11,7 @@ const btnFiltrar = document.getElementById('btnFiltrar');
 const inpFiltrarNome = document.getElementById('inpFiltrarNome');
 const btnIncluirModal = document.getElementById('btnIncluirModal');
 const btnAlterarModal = document.getElementById('btnAlterarModal')
+const btnExcluirModal = document.getElementById('btnExcluirModal')
 const inputId = document.getElementById('inputId');
 const inputNome = document.getElementById('inputNome');
 const inputDep = document.getElementById('inputDep');
@@ -24,6 +25,16 @@ let response = await consultaAPI();
 
 btnIncluir.onclick = ()=>{
     modalProdutos.showModal();
+
+    inputId.disabled = false
+    inputNome.disabled = false
+    inputDep.disabled = false
+    inputFunc.disabled = false
+    inputSal.disabled = false
+    btnIncluirModal.disabled = false
+    btnAlterarModal.disabled = true
+    btnExcluirModal.disabled = true
+    btnFecharModal.disabled = false
 };
 
 btnFecharModal.onclick = ()=>{
@@ -70,17 +81,63 @@ btnIncluirModal.onclick = ()=>{
 }
 
 tbodyList.addEventListener('click', (event)=>{
-    modalExcluir.showModal()
     let target = event.target
+    console.log(target);
     
-    document.getElementById('exclusao').addEventListener('click', ()=>{
-        modalExcluir.close()
-        modalProdutos.showModal()
-        btnIncluirModal.desabled
-        btnAlterarModal.desabled
-    })
+    if(target.id === 'btnTrash'){
+        modalExcluir.showModal()
+        
+        document.getElementById('exclusao').addEventListener('click', ()=>{
+            modalExcluir.close()
+            modalProdutos.showModal()
+            
+            const row = target.closest('tr')
 
-    document.getElementById('naoExclusao').addEventListener('click', ()=>{
-        modalExcluir.close()
-    })
+            inputId.value = row.cells[0].textContent
+            inputNome.value = row.cells[1].textContent
+            inputDep.value = row.cells[2].textContent
+            inputFunc.value = row.cells[3].textContent
+            inputSal.value = row.cells[4].textContent
+            
+            inputId.disabled = true
+            inputNome.disabled = true
+            inputDep.disabled = true
+            inputFunc.disabled = true
+            inputSal.disabled = true
+            btnIncluirModal.disabled = true
+            btnAlterarModal.disabled = true
+            btnExcluirModal.disabled = false
+            btnFecharModal.disabled = false
+
+            document.querySelector('#btnExcluirModal').onclick = ()=>{
+                response.splice()
+            }
+        })
+
+        document.getElementById('naoExclusao').addEventListener('click', ()=>{
+            modalExcluir.close()
+        })
+    }
+
+    if(target.id === 'btnEdit'){
+        modalProdutos.showModal()
+
+        const row = target.closest('tr')
+
+            inputId.value = row.cells[0].textContent
+            inputNome.value = row.cells[1].textContent
+            inputDep.value = row.cells[2].textContent
+            inputFunc.value = row.cells[3].textContent
+            inputSal.value = row.cells[4].textContent
+            
+            inputId.disabled = false
+            inputNome.disabled = false
+            inputDep.disabled = false
+            inputFunc.disabled = false
+            inputSal.disabled = false
+            btnIncluirModal.disabled = true
+            btnAlterarModal.disabled = false
+            btnExcluirModal.disabled = true
+            btnFecharModal.disabled = false
+    }
 })
