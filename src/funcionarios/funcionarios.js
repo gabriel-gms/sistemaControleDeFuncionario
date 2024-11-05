@@ -14,10 +14,15 @@ export async function consultaAPI(){
     } catch (error) {
 
     }
-
-
 }
+export function cadastrar(dados){
+    try {
+        const response = api.post('createfunc', dados);
+        atualizarTabela(response.data.result);
+    } catch (error) {
 
+    }
+}
 
 export function atualizarTabela(dados){
     if(dados.length === 0){
