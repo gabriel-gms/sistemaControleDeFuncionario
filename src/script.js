@@ -1,7 +1,7 @@
 // Importações
 import  funcionarios from '../databases/banco.js';
 import { atualizarTabela, cadastrar, consultaAPI, justLetters } from './funcionarios/funcionarios.js';
-import { setInputs, setButtons } from './funcionarios/funcionarios.js';
+import { setInputs, setButtons , deletar} from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
@@ -62,13 +62,12 @@ btnFiltrar.onclick = ()=>{
 
 btnIncluirModal.onclick = ()=>{
     
-    response.push({
-        'id': inputId.value, 
+    let response = {
         'nome': inputNome.value, 
         'departamento': inputDep.value, 
         'funcao': inputFunc.value, 
         'salario': inputSal.value
-    })
+    }
     
     cadastrar(response);
 
@@ -120,12 +119,8 @@ tbodyList.addEventListener('click', (event)=>{
 
             document.querySelector('#btnExcluirModal').onclick = ()=>{
                 
-                for (let i = 0; i < response.length; i++) {
-                    if(response[i].nome == dados.nome && response[i].id == dados.id){
-                        response.splice(i, 1) 
-                        atualizarTabela(response)
-                    }
-                }
+                deletar(dados.id)
+
                 modalProdutos.close()
             }
         })

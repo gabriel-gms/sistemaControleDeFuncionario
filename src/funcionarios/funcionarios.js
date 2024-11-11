@@ -12,15 +12,23 @@ export async function consultaAPI(){
         atualizarTabela(response.data.result);
         return response.data.result
     } catch (error) {
-
+        console.log(error)
     }
 }
-export function cadastrar(dados){
+export async function cadastrar(dados){
+    console.log(dados);
     try {
-        const response = api.post('createfunc', dados);
-        atualizarTabela(response.data.result);
+        const response = await api.post('createfunc', dados);
     } catch (error) {
+        console.log(error);
+    }
+}
 
+export async function deletar(id){
+    try {
+        const response = await api.delete('func/'+id)
+    } catch (error) {
+        console.log(error);
     }
 }
 
